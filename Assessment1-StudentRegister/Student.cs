@@ -20,7 +20,7 @@ namespace Assessment1_StudentRegister
         }
         public void AddAttendence()
         {
-            Attendances[0] = new Attendance(DateTime.Now, "L");
+            Attendances[] = new Attendance(DateTime.Now, "L");
         }
     }
 }
