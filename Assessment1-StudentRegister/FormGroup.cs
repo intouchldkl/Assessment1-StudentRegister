@@ -27,7 +27,7 @@ namespace Assessment1_StudentRegister
         }
         public void TakeRegister()
         {
-
+            s
         }
 
     }
