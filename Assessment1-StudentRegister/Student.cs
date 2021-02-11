@@ -116,12 +116,20 @@ namespace Assessment1_StudentRegister
         {
             for(int i = 0;i < attendanceCount;i++)
             {
+                if(attendances[i] == null)
+                {
+                    break;
+                }
                 if(date == attendances[i].getDate())
                 {
                     return attendances[i].GetMinutesLate();
                 }
             }
             return 0;
+        }
+        public int getAttendanceCount()
+        {
+            return attendanceCount;
         }
         
          

@@ -43,16 +43,106 @@ namespace Assessment1_StudentRegister
         {
             for (int i = 0; i < TotalStudent; i++)
             {
+                if(students[i] == null)
+                {
+                    break;
+                }
+                
                 if (students[i].getStudentAttendanceOnDate(date) == "P" || students[i].getStudentAttendanceOnDate(date) == "A")
                 {
                     Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date));
                 }
                 else if (students[i].getStudentAttendanceOnDate(date) == "L")
                 {
-                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date) + " " + students[i].getMinLateOnDate(date));
+                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date) + " " + students[i].getMinLateOnDate(date) + " minute late");
                 }
             }
         }
 
+        public Student getStudent(int i)
+        {
+            if(i < TotalStudent)
+            {
+                return students[i];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string getMostLateStudent()
+        {
+            int mostLateMin = 0;
+            string mostLateStudent = "No student came late";
+            for(int i = 0;i < TotalStudent;i++)
+            {
+                if(students[i] == null)
+                {
+                    break;
+                }
+                if(students[i].getTotalMinLate() > mostLateMin)
+                {
+                    mostLateStudent = students[i].getStudentName();
+                }
+
+            }
+            return mostLateStudent;
+        }
+
+        public string getMostPresentStudent()
+        {
+            int mostPresence = 0;
+            string mostPresentStudent = "No student was absent";
+            for (int i = 0; i < TotalStudent; i++)
+            {
+                if (students[i] == null)
+                {
+                    break;
+                }
+                if (students[i].getTotalPresence() > mostPresence)
+                {
+                   mostPresentStudent = students[i].getStudentName();
+                }
+
+            }
+            return mostPresentStudent;
+
+        }
+        public string getMostAbsentStudent()
+        {
+            int mostAbsence = 0;
+            string mostAbsentStudent = students[0].getStudentName();
+            for (int i = 0; i < TotalStudent; i++)
+            {
+                if (students[i] == null)
+                {
+                    break;
+                }
+                if (students[i].getTotalAbsence() > mostAbsence)
+                {
+                    mostAbsentStudent = students[i].getStudentName();
+                }
+
+            }
+            return mostAbsentStudent;
+
+        }
+        public string getStudentWithPerfectAttendence()
+        {
+            string perfectStudent = "No student has perfect attendance";
+            for(int i = 0;i < TotalStudent;i++)
+            {
+                if(students[i] == null)
+                {
+                    break;
+                }
+                if(students[i].getTotalPresence() == students[i].getAttendanceCount())
+                {
+                    perfectStudent = students[i].getStudentName() + " has perfect attendance";
+                }
+            }
+            return perfectStudent;
+        }
     }
 }
