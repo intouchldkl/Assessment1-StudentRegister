@@ -6,9 +6,15 @@ namespace Assessment1_StudentRegister
     {
         static void Main(string[] args)
         {
-            Attendance Test = new Attendance(DateTime.Now, "L");
-            Console.WriteLine(Test.GetMinutesLate());
-            Console.WriteLine(Test.getDate());
+            FormGroup Year12FB = new FormGroup("Year12FB", "Faye Blairs");
+            Year12FB.AddStudent("Intouch", DateTime.Parse("06/07/2004"), true);
+            Year12FB.AddStudent("Prem", DateTime.Parse("31/12/2004"), true);
+            Year12FB.AddStudent("Emeline", DateTime.Parse("01/09/2004"), false);
+
+            Year12FB.TakeRegister(DateTime.Now);
+
+            Year12FB.printRegister(DateTime.Now);
+            
         }
     }
 }

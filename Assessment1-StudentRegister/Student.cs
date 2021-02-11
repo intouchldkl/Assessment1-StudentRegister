@@ -16,49 +16,49 @@ namespace Assessment1_StudentRegister
         private int TotalLate;
         private int TotalMinLate;
 
-        public Student(string StudentName,DateTime DOB,bool Gender)
+        public Student(string StudentName, DateTime DOB, bool Gender)
         {
             this.StudentName = StudentName;
             this.DOB = DOB;
             this.Gender = Gender;
-          attendances = new Attendance[180];
+            attendances = new Attendance[180];
             attendanceCount = 0;
             TotalPresence = 0;
             TotalAbsence = 0;
             TotalLate = 0;
             TotalMinLate = 0;
         }
-       
-        public void AddAttendence(DateTime Date,string AttendenceStatus)
-        { 
-            
-            
-         
-            if(AttendenceStatus == "P")
+
+        public void AddAttendence(DateTime Date, string AttendenceStatus)
+        {
+
+
+
+            if (AttendenceStatus == "P")
             {
                 TotalPresence++;
                 attendances[attendanceCount] = new Attendance(Date, AttendenceStatus);
                 attendanceCount++;
             }
-            else if(AttendenceStatus == "A")
+            else if (AttendenceStatus == "A")
             {
                 TotalAbsence++;
                 attendances[attendanceCount] = new Attendance(Date, AttendenceStatus);
                 attendanceCount++;
             }
-            else if(AttendenceStatus == "L")
+            else if (AttendenceStatus == "L")
             {
                 TotalLate++;
                 attendances[attendanceCount] = new Attendance(Date, AttendenceStatus);
                 TotalMinLate = TotalMinLate + attendances[attendanceCount].GetMinutesLate();
-                
+
                 attendanceCount++;
             }
             else
             {
                 Console.WriteLine("Ineligible Attendance status");
             }
-          
+
         }
         public int getTotalPresence()
         {
@@ -79,21 +79,52 @@ namespace Assessment1_StudentRegister
         public string getStudentAttendanceOnDate(DateTime Date)
         {
             string attendanceOnDate = "No data on that date";
-            for(int i = 0;i < attendances.Length;i++)
+            for (int i = 0; i < attendances.Length; i++)
             {
-                if(attendances[i] == null)
+                if (attendances[i] == null)
                 {
                     return attendanceOnDate;
                 }
-                
-                if(attendances[i].getDate() == Date)
+
+                if (attendances[i].getDate() == Date)
                 {
                     attendanceOnDate = attendances[i].GetAttendanceStatus();
                 }
             }
             return attendanceOnDate;
         }
-
+        public string getStudentName()
+        {
+            return StudentName;
+        }
+        public DateTime getStudentDOB()
+        {
+            return DOB;
+        }
+        public string getStudentGender()
+        {
+            if (Gender == true)
+            {
+                return "Male";
+            }
+            else
+            {
+                return "Female";
+            }
+        }
+        public int getMinLateOnDate(DateTime date)
+        {
+            for(int i = 0;i < attendanceCount;i++)
+            {
+                if(date == attendances[i].getDate())
+                {
+                    return attendances[i].GetMinutesLate();
+                }
+            }
+            return 0;
+        }
+        
+         
 
     }
 }

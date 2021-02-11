@@ -25,9 +25,33 @@ namespace Assessment1_StudentRegister
             TotalStudent++;
 
         }
-        public void TakeRegister()
+        public void TakeRegister(DateTime date)
         {
-            s
+            Console.WriteLine("{0,3}{1,25} {2,30}", "Type P for Present", "Type A for Absent", "Type L for Late");
+            string studentAttendence;
+            for(int i = 0;i < TotalStudent;i++)
+            {
+                
+                Console.WriteLine("Is " + students[i].getStudentName() +" present,absent or late?");
+                studentAttendence = Console.ReadLine();
+                students[i].AddAttendence(date, studentAttendence);
+
+
+            }
+        }
+        public void printRegister(DateTime date)
+        {
+            for (int i = 0; i < TotalStudent; i++)
+            {
+                if (students[i].getStudentAttendanceOnDate(date) == "P" || students[i].getStudentAttendanceOnDate(date) == "A")
+                {
+                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date));
+                }
+                else if (students[i].getStudentAttendanceOnDate(date) == "L")
+                {
+                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date) + " " + students[i].getMinLateOnDate(date));
+                }
+            }
         }
 
     }
