@@ -23,16 +23,7 @@ namespace Assessment1_StudentRegister
                     Console.WriteLine("Student with the most presence is " + Year12FB.getMostPresentStudent());
                     Console.WriteLine("Student with the most absence is " + Year12FB.getMostAbsentStudent());
                     Console.WriteLine("Student with the most late minute is " + Year12FB.getMostLateStudent());
-                    //Console.WriteLine(Year12FB.getStudent(0).getTotalPresence());
-                    //Console.WriteLine(Year12FB.getStudent(1).getTotalPresence());
-                    //Console.WriteLine(Year12FB.getStudent(2).getTotalPresence());
-                    //Console.WriteLine(Year12FB.getStudent(0).getTotalAbsence());
-                    //Console.WriteLine(Year12FB.getStudent(1).getTotalAbsence());
-                    //Console.WriteLine(Year12FB.getStudent(2).getTotalAbsence());
-                    //Console.WriteLine(Year12FB.getStudent(0).getTotalMinLate());
-                    //Console.WriteLine(Year12FB.getStudent(1).getTotalMinLate());
-                    //Console.WriteLine(Year12FB.getStudent(2).getTotalMinLate());
-                     Console.WriteLine(Year12FB.getStudentWithPerfectAttendence());
+                    Year12FB.getStudentWithPerfectAttendence();
                     break;
                 }
                 Year12FB.TakeRegister(Convert.ToDateTime(date));

@@ -10,6 +10,7 @@ namespace Assessment1_StudentRegister
         private string FormTeacherName;
         private Student[] students;
         private int TotalStudent;
+        
 
         public FormGroup(string FormName,string FormTeacherName)
         {
@@ -84,6 +85,16 @@ namespace Assessment1_StudentRegister
                 if(students[i].getTotalMinLate() > mostLateMin)
                 {
                     mostLateStudent = students[i].getStudentName();
+                    mostLateMin = students[i].getTotalMinLate();
+                }
+                else if(students[i].getTotalMinLate() == mostLateMin)
+                {
+                    mostLateStudent = mostLateStudent + " and " + students[i].getStudentName();
+
+                }
+                if(mostLateMin == 0)
+                {
+                    mostLateStudent = "no one";
                 }
 
             }
@@ -93,7 +104,7 @@ namespace Assessment1_StudentRegister
         public string getMostPresentStudent()
         {
             int mostPresence = 0;
-            string mostPresentStudent = "No student was absent";
+            string mostPresentStudent = "No student was present";
             for (int i = 0; i < TotalStudent; i++)
             {
                 if (students[i] == null)
@@ -103,6 +114,16 @@ namespace Assessment1_StudentRegister
                 if (students[i].getTotalPresence() > mostPresence)
                 {
                    mostPresentStudent = students[i].getStudentName();
+                    mostPresence = students[i].getTotalPresence();
+                }
+                else if(students[i].getTotalPresence() == mostPresence)
+                {
+                    mostPresentStudent = mostPresentStudent + " and " + students[i].getStudentName();
+
+                }
+                if(mostPresence == 0)
+                {
+                    mostPresentStudent = "no one";
                 }
 
             }
@@ -112,7 +133,7 @@ namespace Assessment1_StudentRegister
         public string getMostAbsentStudent()
         {
             int mostAbsence = 0;
-            string mostAbsentStudent = students[0].getStudentName();
+            string mostAbsentStudent = "No student was absent";
             for (int i = 0; i < TotalStudent; i++)
             {
                 if (students[i] == null)
@@ -122,15 +143,27 @@ namespace Assessment1_StudentRegister
                 if (students[i].getTotalAbsence() > mostAbsence)
                 {
                     mostAbsentStudent = students[i].getStudentName();
+                    mostAbsence = students[i].getTotalAbsence();
+                }
+                else if (students[i].getTotalAbsence() == mostAbsence)
+
+                {
+                    mostAbsentStudent = mostAbsentStudent + " and " + students[i].getStudentName();
+
+                }
+                if(mostAbsence == 0)
+                {
+                    mostAbsentStudent = "no one";
                 }
 
             }
             return mostAbsentStudent;
 
         }
-        public string getStudentWithPerfectAttendence()
+        public void getStudentWithPerfectAttendence()
         {
-            string perfectStudent = "No student has perfect attendance";
+            string[] perfectStudents = new string[TotalStudent];
+            int totalPerfectStudent = 0;
             for(int i = 0;i < TotalStudent;i++)
             {
                 if(students[i] == null)
@@ -139,10 +172,18 @@ namespace Assessment1_StudentRegister
                 }
                 if(students[i].getTotalPresence() == students[i].getAttendanceCount())
                 {
-                    perfectStudent = students[i].getStudentName() + " has perfect attendance";
+                    perfectStudents[totalPerfectStudent] = students[i].getStudentName() + " has perfect attendance";
+                    totalPerfectStudent++;
                 }
             }
-            return perfectStudent;
+
+            for(int i = 0;i < totalPerfectStudent;i++)
+            {
+                Console.WriteLine(perfectStudents[i]);
+            }
+          
         }
+
+        
     }
 }
