@@ -20,6 +20,7 @@ namespace Assessment1_StudentRegister
         {
             this.StudentName = StudentName;
             this.DOB = DOB;
+            
             this.Gender = Gender;
             attendances = new Attendance[180];
             attendanceCount = 0;
@@ -78,6 +79,7 @@ namespace Assessment1_StudentRegister
         }
         public string getStudentAttendanceOnDate(DateTime Date)
         {
+            
             string attendanceOnDate = "No data on that date";
             for (int i = 0; i < attendances.Length; i++)
             {
@@ -86,7 +88,7 @@ namespace Assessment1_StudentRegister
                     return attendanceOnDate;
                 }
 
-                if (attendances[i].getDate() == Date)
+                if (attendances[i].getDate().ToString("dd/MM/yyyy") == Date.ToString("dd/MM/yyyy"))
                 {
                     attendanceOnDate = attendances[i].GetAttendanceStatus();
                 }
@@ -97,9 +99,10 @@ namespace Assessment1_StudentRegister
         {
             return StudentName;
         }
-        public DateTime getStudentDOB()
+        public string getStudentDOB()
         {
-            return DOB;
+            
+            return DOB.ToString("dd/MM/yyyy");
         }
         public string getStudentGender()
         {
@@ -120,7 +123,7 @@ namespace Assessment1_StudentRegister
                 {
                     break;
                 }
-                if(date == attendances[i].getDate())
+                if(date.ToString("dd/MM/yyyy") == attendances[i].getDate().ToString("dd/MM/yyyy"))
                 {
                     return attendances[i].GetMinutesLate();
                 }

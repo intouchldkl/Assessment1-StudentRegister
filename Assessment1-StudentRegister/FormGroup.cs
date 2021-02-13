@@ -42,6 +42,7 @@ namespace Assessment1_StudentRegister
         }
         public void printRegister(DateTime date)
         {
+
             for (int i = 0; i < TotalStudent; i++)
             {
                 if(students[i] == null)
@@ -57,6 +58,7 @@ namespace Assessment1_StudentRegister
                 {
                     Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date) + " " + students[i].getMinLateOnDate(date) + " minute late");
                 }
+              
             }
         }
 
@@ -166,15 +168,17 @@ namespace Assessment1_StudentRegister
             int totalPerfectStudent = 0;
             for(int i = 0;i < TotalStudent;i++)
             {
-                if(students[i] == null)
+                if(students[i] == null || students[i].getTotalPresence() == 0)
                 {
                     break;
                 }
-                if(students[i].getTotalPresence() == students[i].getAttendanceCount())
+             
+                if (students[i].getTotalPresence() == students[i].getAttendanceCount())
                 {
                     perfectStudents[totalPerfectStudent] = students[i].getStudentName() + " has perfect attendance";
                     totalPerfectStudent++;
                 }
+                
             }
 
             for(int i = 0;i < totalPerfectStudent;i++)
@@ -184,6 +188,17 @@ namespace Assessment1_StudentRegister
           
         }
 
-        
+        public string getFormTeacherName()
+        {
+            return FormTeacherName;
+        }
+        public string getFormName()
+        {
+            return FormName;
+        }
+        public int getTotalStudent()
+        {
+            return TotalStudent;
+        }
     }
 }
