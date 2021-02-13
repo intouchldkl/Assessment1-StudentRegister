@@ -33,7 +33,7 @@ namespace Assessment1_StudentRegister
             for(int i = 0;i < TotalStudent;i++)
             {
                 
-                Console.WriteLine("Is " + students[i].getStudentName() +" present,absent or late?");
+                Console.WriteLine(students[i].getStudentName());
                 studentAttendence = Console.ReadLine();
                 students[i].AddAttendence(date, studentAttendence);
 

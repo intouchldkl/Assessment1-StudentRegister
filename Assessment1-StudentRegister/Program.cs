@@ -26,6 +26,7 @@ namespace Assessment1_StudentRegister
             bool valid = false;
             string date = "";
             string temp;
+            DateTime date1;
             while (valid == false)
             {
                 Console.WriteLine("YEAR12FB MAIN MENU");
@@ -43,12 +44,21 @@ namespace Assessment1_StudentRegister
                     if (NumberInput == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine( "What is today's date?");
+                        Console.WriteLine("FORM REGISTER");
+                        Console.WriteLine( "Enter the date");
                         Console.WriteLine("dd/mm/yyyy hour:min in this format");
 
 
                         date = Console.ReadLine();
-                        Year12.TakeRegister(Convert.ToDateTime(date));
+
+                        DateTime.TryParse(date, out date1);
+                        if(DateTime.TryParse(date, out date1) == false)
+                        {
+                            Console.WriteLine("Invalid input");
+                            break;
+
+                        }
+                        Year12.TakeRegister(date1);
                         Console.Clear();
                         Console.WriteLine("Registration successful!");
                     }
@@ -60,7 +70,14 @@ namespace Assessment1_StudentRegister
 
 
                         date = Console.ReadLine();
-                        Year12.printRegister(Convert.ToDateTime(date));
+                        DateTime.TryParse(date, out date1);
+                        if (DateTime.TryParse(date, out date1) == false)
+                        {
+                            Console.WriteLine("Invalid input");
+                            break;
+
+                        }
+                        Year12.printRegister(date1);
                         Console.WriteLine("Press any key to go back to main menu");
                         temp = Console.ReadLine();
                         Console.Clear();
@@ -112,7 +129,7 @@ namespace Assessment1_StudentRegister
             Console.WriteLine("List of students: ");
             for(int i =0; i < Year12.getTotalStudent();i++)
             {
-                Console.WriteLine(Year12.getStudent(i).getStudentName() + " | " + Year12.getStudent(i).getStudentDOB() + " | " + Year12.getStudent(i).getStudentGender());
+                Console.WriteLine(Year12.getStudent(i).getStudentName()+"\t" +" | " + Year12.getStudent(i).getStudentDOB() + "\t" + " | " +Year12.getStudent(i).getStudentGender());
             }
             Console.WriteLine("");
             Console.WriteLine("Student with the most presence is " + Year12.getMostPresentStudent());
@@ -127,7 +144,7 @@ namespace Assessment1_StudentRegister
             string studentName = " ";
             for (int i = 0; i < Year12.getTotalStudent(); i++)
             {
-                Console.WriteLine(Year12.getStudent(i).getStudentName() + " | " + Year12.getStudent(i).getStudentDOB() + " | " + Year12.getStudent(i).getStudentGender());
+                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + " | " + Year12.getStudent(i).getStudentDOB() + "\t" + " | " + Year12.getStudent(i).getStudentGender());
             }
             while (studentName != "EXIT")
             {
@@ -142,10 +159,7 @@ namespace Assessment1_StudentRegister
 
                 for(int i = 0; i < Year12.getTotalStudent();i++)
                 {
-                    if(studentName != Year12.getStudent(i).getStudentName())
-                    {
-                        break;
-                    }
+                   
                     if(studentName == Year12.getStudent(i).getStudentName())
                     {
                         Console.WriteLine(Year12.getStudent(i).getStudentName() + "'s total presence is " + Year12.getStudent(i).getTotalPresence() + " day(s)");
@@ -160,26 +174,34 @@ namespace Assessment1_StudentRegister
         }
         static public void CheckStudentAttendenceOnDateMenu(FormGroup Year12)
         {
+            DateTime date1;
             Console.WriteLine("Type the name of the student you want to check");
             string studentName = Console.ReadLine();
             for(int i = 0;i < Year12.getTotalStudent();i++)
             {
-                if(studentName != Year12.getStudent(i).getStudentName())
-                {
-                    break;
-                }
+                
                 if(studentName == Year12.getStudent(i).getStudentName())
                 {
                     string date;
                     Console.WriteLine("Type in the date you want to check");
                     Console.WriteLine("dd/mm/yyyy in this format");
                     date = Console.ReadLine();
-                    Console.WriteLine(Year12.getStudent(i).getStudentAttendanceOnDate(Convert.ToDateTime(date)));
+
+                    DateTime.TryParse(date, out date1);
+                    if (DateTime.TryParse(date, out date1) == false)
+                    {
+                        Console.WriteLine("Invalid input");
+                        break;
+
+                    }
+                    Console.WriteLine(Year12.getStudent(i).getStudentAttendanceOnDate(date1));
                 }
              
             }
+
+            
         }
-        
+       
             
     }
 }
