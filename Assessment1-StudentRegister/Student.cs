@@ -95,6 +95,58 @@ namespace Assessment1_StudentRegister
             }
             return attendanceOnDate;
         }
+        public void setStudentAttendanceOnDate(DateTime Date)
+        {
+            Console.WriteLine("Type in the new attendace");
+            string newAttendance = Console.ReadLine();
+            for (int i = 0; i < attendances.Length; i++)
+            {
+                if (attendances[i] == null)
+                {
+                    break;
+                }
+
+                if (attendances[i].getDate().ToString("dd/MM/yyyy") == Date.ToString("dd/MM/yyyy"))
+                {
+                    if(attendances[i].GetAttendanceStatus() == "P")
+                    {
+                        TotalPresence = TotalPresence - 1;
+                    }
+                    else if(attendances[i].GetAttendanceStatus() == "A")
+                    {
+                        TotalAbsence = TotalAbsence - 1;
+                    }
+                    else
+                    {
+                        TotalLate = TotalLate - 1;
+                        TotalMinLate = TotalMinLate - attendances[i].GetMinutesLate();
+                    }
+                    attendances[i].setAttendanceStatus(newAttendance);
+                    
+                    if(newAttendance == "P")
+                    {
+                        TotalPresence++;
+                    }
+                    else if(newAttendance == "A")
+                    {
+                        TotalAbsence++;
+                    }
+                    else if(newAttendance == "L")
+                    {
+                        Console.WriteLine("Please enter minute late");
+                        string newMinLate = Console.ReadLine();
+                        int newminlate;
+                        int.TryParse(newMinLate, out newminlate);
+                        if(int.TryParse(newMinLate, out newminlate) == false)
+                        {
+                            Console.WriteLine("Invalid input");
+                        }
+                        TotalLate++;
+                        TotalMinLate = TotalMinLate + newminlate;
+                    }
+                }
+            }
+        }
         public string getStudentName()
         {
             return StudentName;

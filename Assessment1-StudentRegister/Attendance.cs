@@ -43,6 +43,14 @@ namespace Assessment1_StudentRegister
             return AttendenceStatus;
 
         }
+        public void setAttendanceStatus(string newAttendance)
+        {
+            
+                AttendenceStatus = newAttendance;
+
+
+            
+        }
     
 
     }

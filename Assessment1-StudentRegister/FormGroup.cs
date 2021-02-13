@@ -200,5 +200,17 @@ namespace Assessment1_StudentRegister
         {
             return TotalStudent;
         }
+        public void deleteStudent(int i)
+        {
+            
+            students[i] = null;
+            
+            for(int z = i;z < TotalStudent;z++)
+            {
+                students[z] = students[z+1];
+                
+            }
+                TotalStudent = TotalStudent - 1;
+        }
     }
 }
