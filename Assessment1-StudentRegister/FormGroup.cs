@@ -52,11 +52,11 @@ namespace Assessment1_StudentRegister
                 
                 if (students[i].getStudentAttendanceOnDate(date) == "P" || students[i].getStudentAttendanceOnDate(date) == "A")
                 {
-                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date));
+                    Console.WriteLine(students[i].getStudentName() + "\t" + students[i].getStudentAttendanceOnDate(date));
                 }
                 else if (students[i].getStudentAttendanceOnDate(date) == "L")
                 {
-                    Console.WriteLine(students[i].getStudentName() + " " + students[i].getStudentAttendanceOnDate(date) + " " + students[i].getMinLateOnDate(date) + " minute late");
+                    Console.WriteLine(students[i].getStudentName() + "\t" + students[i].getStudentAttendanceOnDate(date) + "\t" + students[i].getMinLateOnDate(date) + " minute late");
                 }
               
             }
