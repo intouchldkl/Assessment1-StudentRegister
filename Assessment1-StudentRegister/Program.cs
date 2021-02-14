@@ -15,16 +15,16 @@ namespace Assessment1_StudentRegister
 
             ///For admin login username:admin password:admin123
             MainMenu(Year12FB);
-
+            
 
 
         }
         static public void TeacherMenu(FormGroup Year12)
         {
-            
+
             string Input = " ";
             int NumberInput;
-            
+
             string date = "";
             string temp;
             DateTime date1;
@@ -40,7 +40,7 @@ namespace Assessment1_StudentRegister
 
 
                 Input = Console.ReadLine();
-                if(Input == "EXIT")
+                if (Input == "EXIT")
                 {
                     break;
                 }
@@ -51,14 +51,14 @@ namespace Assessment1_StudentRegister
                     {
                         Console.Clear();
                         Console.WriteLine("FORM REGISTER");
-                        Console.WriteLine( "Enter the date");
+                        Console.WriteLine("Enter the date");
                         Console.WriteLine("dd/mm/yyyy hour:min in this format");
 
 
                         date = Console.ReadLine();
 
                         DateTime.TryParse(date, out date1);
-                        if(DateTime.TryParse(date, out date1) == false)
+                        if (DateTime.TryParse(date, out date1) == false)
                         {
                             Console.WriteLine("Invalid input");
                             break;
@@ -96,7 +96,7 @@ namespace Assessment1_StudentRegister
                         temp = Console.ReadLine();
                         Console.Clear();
                     }
-                    else if(NumberInput == 4)
+                    else if (NumberInput == 4)
                     {
                         Console.Clear();
                         studentStatisticMenu(Year12);
@@ -105,7 +105,7 @@ namespace Assessment1_StudentRegister
                         Console.Clear();
 
                     }
-                    else if(NumberInput == 5)
+                    else if (NumberInput == 5)
                     {
                         Console.Clear();
                         CheckStudentAttendenceOnDateMenu(Year12);
@@ -129,21 +129,91 @@ namespace Assessment1_StudentRegister
         }
         static public void YearGroupInfoMenu(FormGroup Year12)
         {
+            
            
-            Console.WriteLine(Year12.getFormName() + " INFORMATION MENU");
-            Console.WriteLine("");
-            Console.WriteLine("Form teacher: " + Year12.getFormTeacherName());
-            Console.WriteLine("");
-            Console.WriteLine("List of students: ");
-            for(int i =0; i < Year12.getTotalStudent();i++)
+            
+            string Input = " ";
+            int NumberInput;
+
+            
+            string temp;
+            DateTime date1;
+            while (Input != "EXIT")
             {
-                Console.WriteLine(Year12.getStudent(i).getStudentName()+"\t" +" | " + Year12.getStudent(i).getStudentDOB() + "\t" + " | " +Year12.getStudent(i).getStudentGender());
+                Console.WriteLine(Year12.getFormName() + " INFORMATION MENU");
+                Console.WriteLine("");
+                Console.WriteLine("Form teacher: " + Year12.getFormTeacherName());
+                Console.WriteLine("");
+                Console.WriteLine("List of students: ");
+                for (int i = 0; i < Year12.getTotalStudent(); i++)
+                {
+                    Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + " | " + Year12.getStudent(i).getStudentDOB() + "\t" + " | " + Year12.getStudent(i).getStudentGender());
+                }
+                Console.WriteLine("");
+                Console.WriteLine("Press 1 to view present days statistic");
+                Console.WriteLine("Press 2 to view absent days statistic");
+                Console.WriteLine("Press 3 to view late days statistic");
+                Console.WriteLine("Press 4 to view student student(s) with perfect attendance");
+ 
+                Console.WriteLine("Type EXIT to main menu");
+
+
+                Input = Console.ReadLine();
+                if (Input == "EXIT")
+                {
+                    break;
+                }
+
+                if (int.TryParse(Input, out NumberInput))
+                {
+                    if (NumberInput == 1)
+                    {
+                        Console.Clear();
+                        createPresentDayChart(Year12);
+                        Console.WriteLine("Press any key to go back to main menu");
+                        temp = Console.ReadLine();
+                        Console.Clear();
+                        
+                    }
+                    else if (NumberInput == 2)
+                    {
+                        Console.Clear();
+                        createAbsentDayChart(Year12);
+                        Console.WriteLine("Press any key to go back to main menu");
+                        temp = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else if (NumberInput == 3)
+                    {
+                        Console.Clear();
+                        createLateDayChart(Year12);
+                        Console.WriteLine("Press any key to go back to main menu");
+                        temp = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else if (NumberInput == 4)
+                    {
+                        Console.Clear();
+                        Year12.getStudentWithPerfectAttendence();
+                        Console.WriteLine("Press any key to go back to main menu");
+                        temp = Console.ReadLine();
+                        Console.Clear();
+
+                    }
+                    
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid input");
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input");
+                }
             }
-            Console.WriteLine("");
-            Console.WriteLine("Student with the most presence is " + Year12.getMostPresentStudent());
-            Console.WriteLine("Student with the most absence is " + Year12.getMostAbsentStudent());
-            Console.WriteLine("Student with the most late minute is " + Year12.getMostLateStudent());
-            Year12.getStudentWithPerfectAttendence();
+            
         }
         static public void studentStatisticMenu(FormGroup Year12)
         {
@@ -158,37 +228,48 @@ namespace Assessment1_StudentRegister
             {
 
 
-                Console.WriteLine("{0,3} {1,50}","Type the name of the student to check for information","Type EXIT to go back to main menu");
+                Console.WriteLine("{0,3} {1,50}", "Type the name of the student to check for information", "Type EXIT to go back to main menu");
                 studentName = Console.ReadLine();
-                if(studentName == "EXIT")
+                if (studentName == "EXIT")
                 {
                     break;
                 }
 
-                for(int i = 0; i < Year12.getTotalStudent();i++)
+                for (int i = 0; i < Year12.getTotalStudent(); i++)
                 {
-                   
-                    if(studentName == Year12.getStudent(i).getStudentName())
+
+                    if (studentName == Year12.getStudent(i).getStudentName())
                     {
-                        Console.WriteLine(Year12.getStudent(i).getStudentName() + "'s total presence is " + Year12.getStudent(i).getTotalPresence() + " day(s)");
-                        Console.WriteLine(Year12.getStudent(i).getStudentName() + "'s total absence is " + Year12.getStudent(i).getTotalAbsence() + " day(s)");
-                        Console.WriteLine(Year12.getStudent(i).getStudentName() + "'s total late days is " + Year12.getStudent(i).getTotalLate() + " day(s)");
-                        Console.WriteLine(Year12.getStudent(i).getStudentName() + "'s total late minute is " + Year12.getStudent(i).getTotalMinLate() + " minute(s)");
+                        Console.Clear();
+                        Console.WriteLine(Year12.getStudent(i).getStudentName() + "'S INFORMATION");
+                        Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("{0,9} {1,4}{2,5}{3,5}{4,5}{5,5}{6,5}{7,5}{8,5}{9,5}{10,5}{11,5}{12,5}{13,5}{14,5}{15,5}{16,5}{17,5}{18,5}{19,5}{20,5}"
+                         , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
+                        string result = string.Join("#", new string[Year12.getStudent(i).getTotalPresence() + 1]);
+
+                        Console.WriteLine("Present" + "\t" + result + "#");
+                        string result1 = string.Join("#", new string[Year12.getStudent(i).getTotalAbsence() + 1]);
+
+                        Console.WriteLine("Absent" + "\t" + result1 + "#");
+                        string result2 = string.Join("#", new string[Year12.getStudent(i).getTotalLate() + 1]);
+
+                        Console.WriteLine("Late" + "\t" + result2 + "#");
+                       
                     }
-                   
+
                 }
             }
-            
+
         }
         static public void CheckStudentAttendenceOnDateMenu(FormGroup Year12)
         {
             DateTime date1;
             Console.WriteLine("Type the name of the student you want to check");
             string studentName = Console.ReadLine();
-            for(int i = 0;i < Year12.getTotalStudent();i++)
+            for (int i = 0; i < Year12.getTotalStudent(); i++)
             {
-                
-                if(studentName == Year12.getStudent(i).getStudentName())
+
+                if (studentName == Year12.getStudent(i).getStudentName())
                 {
                     string date;
                     Console.WriteLine("Type in the date you want to check");
@@ -204,10 +285,10 @@ namespace Assessment1_StudentRegister
                     }
                     Console.WriteLine(Year12.getStudent(i).getStudentAttendanceOnDate(date1));
                 }
-             
+
             }
 
-            
+
         }
 
         static public void adminMenu(FormGroup Year12)
@@ -329,13 +410,13 @@ namespace Assessment1_StudentRegister
                         }
 
                     }
-                   
+
                 }
             }
         }
         static public void MainMenu(FormGroup Year12)
         {
-            
+
 
             string Input = " ";
             int NumberInput;
@@ -351,20 +432,25 @@ namespace Assessment1_StudentRegister
 
 
                 Input = Console.ReadLine();
-               
+
                 if (int.TryParse(Input, out NumberInput))
                 {
-                    if(NumberInput == 1)
+                    if (NumberInput == 1)
                     {
                         Console.Clear();
                         adminMenu(Year12);
                         Console.Clear();
                     }
-                    else if(NumberInput == 2)
+                    else if (NumberInput == 2)
                     {
                         Console.Clear();
                         TeacherMenu(Year12);
                         Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid Input");
                     }
                 }
                 else
@@ -372,7 +458,50 @@ namespace Assessment1_StudentRegister
                     Console.Clear();
                     Console.WriteLine("Invalid Input");
                 }
-                        
+
+
+            }
+        }
+        static public void createPresentDayChart(FormGroup Year12)
+        {
+            string x = "#";
+            Console.WriteLine("YEAR12FB PRESENT DAYS");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("{0,9} {1,4}{2,5}{3,5}{4,5}{5,5}{6,5}{7,5}{8,5}{9,5}{10,5}{11,5}{12,5}{13,5}{14,5}{15,5}{16,5}{17,5}{18,5}{19,5}{20,5}" 
+             , "0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","90","95","100");
+            for(int i = 0;i < Year12.getTotalStudent();i++)
+            {
+                string result = string.Join(x, new string[Year12.getStudent(i).getTotalPresence()+1]  );
+
+                Console.WriteLine(Year12.getStudent(i).getStudentName() +"\t" +  result+"#");
+            }
+        }
+        static public void createAbsentDayChart(FormGroup Year12)
+        {
+            string x = "#";
+            Console.WriteLine("YEAR12FB ABSENT DAYS");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("{0,9} {1,4}{2,5}{3,5}{4,5}{5,5}{6,5}{7,5}{8,5}{9,5}{10,5}{11,5}{12,5}{13,5}{14,5}{15,5}{16,5}{17,5}{18,5}{19,5}{20,5}"
+             , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
+            for (int i = 0; i < Year12.getTotalStudent(); i++)
+            {
+                string result = string.Join(x, new string[Year12.getStudent(i).getTotalAbsence() + 1]);
+
+                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result+"#");
+            }
+        }
+        static public void createLateDayChart(FormGroup Year12)
+        {
+            string x = "#";
+            Console.WriteLine("YEAR12FB LATE DAYS");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("{0,9} {1,4}{2,5}{3,5}{4,5}{5,5}{6,5}{7,5}{8,5}{9,5}{10,5}{11,5}{12,5}{13,5}{14,5}{15,5}{16,5}{17,5}{18,5}{19,5}{20,5}"
+             , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
+            for (int i = 0; i < Year12.getTotalStudent(); i++)
+            {
+                string result = string.Join(x, new string[Year12.getStudent(i).getTotalLate() + 1]);
+
+                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result+"#");
             }
         }
 

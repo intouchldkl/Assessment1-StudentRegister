@@ -175,7 +175,7 @@ namespace Assessment1_StudentRegister
              
                 if (students[i].getTotalPresence() == students[i].getAttendanceCount())
                 {
-                    perfectStudents[totalPerfectStudent] = students[i].getStudentName() + " has perfect attendance";
+                    perfectStudents[totalPerfectStudent] = students[i].getStudentName() ;
                     totalPerfectStudent++;
                 }
                 
