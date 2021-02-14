@@ -410,6 +410,11 @@ namespace Assessment1_StudentRegister
                         }
 
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid input");
+                    }
 
                 }
             }
