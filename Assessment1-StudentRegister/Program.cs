@@ -299,7 +299,7 @@ namespace Assessment1_StudentRegister
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
 
-            if (username == "admin" || password == "admin123")
+            if (username == "admin" && password == "admin123")
             {
 
                 Console.Clear();
