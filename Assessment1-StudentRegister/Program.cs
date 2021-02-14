@@ -440,6 +440,7 @@ namespace Assessment1_StudentRegister
                         Console.Clear();
                         adminMenu(Year12);
                         Console.Clear();
+                        Console.WriteLine("ADMIN ACCESS DENIED");
                     }
                     else if (NumberInput == 2)
                     {
