@@ -18,6 +18,7 @@ namespace Assessment1_StudentRegister
             this.FormTeacherName = FormTeacherName;
             students = new Student[20];
             TotalStudent = 0;
+            
         }
 
         public void AddStudent(string StudentName,DateTime DOB,bool Gender)

@@ -245,15 +245,24 @@ namespace Assessment1_StudentRegister
                         Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                         Console.WriteLine("{0,9} {1,4}{2,5}{3,5}{4,5}{5,5}{6,5}{7,5}{8,5}{9,5}{10,5}{11,5}{12,5}{13,5}{14,5}{15,5}{16,5}{17,5}{18,5}{19,5}{20,5}"
                          , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
-                        string result = string.Join("#", new string[Year12.getStudent(i).getTotalPresence() + 1]);
 
-                        Console.WriteLine("Present" + "\t" + result + "#");
-                        string result1 = string.Join("#", new string[Year12.getStudent(i).getTotalAbsence() + 1]);
+                        double presence = Year12.getStudent(i).getTotalPresence();
+                        double absence = Year12.getStudent(i).getTotalAbsence();
+                        double late = Year12.getStudent(i).getTotalLate();
+                        double totalAttendance = Year12.getStudent(i).getAttendanceCount();
+                        double percentage1 = (presence / totalAttendance) * 100;
+                        double percentage2 = (absence / totalAttendance) * 100;
+                        double percentage3 = (late / totalAttendance) * 100;
 
-                        Console.WriteLine("Absent" + "\t" + result1 + "#");
-                        string result2 = string.Join("#", new string[Year12.getStudent(i).getTotalLate() + 1]);
+                        string result = string.Join("#", new string[Convert.ToInt32(percentage1) + 1]);
 
-                        Console.WriteLine("Late" + "\t" + result2 + "#");
+                        Console.WriteLine("Present" + "\t" + result );
+                        string result1 = string.Join("#", new string[Convert.ToInt32(percentage2) + 1]);
+
+                        Console.WriteLine("Absent" + "\t" + result1 );
+                        string result2 = string.Join("#", new string[Convert.ToInt32(percentage3) + 1]);
+
+                        Console.WriteLine("Late" + "\t" + result2 );
                        
                     }
 
@@ -477,9 +486,13 @@ namespace Assessment1_StudentRegister
              , "0","5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","90","95","100");
             for(int i = 0;i < Year12.getTotalStudent();i++)
             {
-                string result = string.Join(x, new string[Year12.getStudent(i).getTotalPresence()+1]  );
+                double presence = Year12.getStudent(i).getTotalPresence();
+                double totalAttendance = Year12.getStudent(i).getAttendanceCount();
+                double percentage = (presence / totalAttendance ) * 100;
 
-                Console.WriteLine(Year12.getStudent(i).getStudentName() +"\t" +  result+"#");
+                string result = string.Join(x, new string[Convert.ToInt32(percentage)+1]  );
+                
+                Console.WriteLine(Year12.getStudent(i).getStudentName() +"\t" +  result);
             }
         }
         static public void createAbsentDayChart(FormGroup Year12)
@@ -491,9 +504,14 @@ namespace Assessment1_StudentRegister
              , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
             for (int i = 0; i < Year12.getTotalStudent(); i++)
             {
-                string result = string.Join(x, new string[Year12.getStudent(i).getTotalAbsence() + 1]);
 
-                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result+"#");
+                double absence = Year12.getStudent(i).getTotalAbsence();
+                double totalAttendance = Year12.getStudent(i).getAttendanceCount();
+                double percentage = (absence / totalAttendance) * 100;
+
+                string result = string.Join(x, new string[Convert.ToInt32(percentage) + 1]);
+
+                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result);
             }
         }
         static public void createLateDayChart(FormGroup Year12)
@@ -505,9 +523,14 @@ namespace Assessment1_StudentRegister
              , "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100");
             for (int i = 0; i < Year12.getTotalStudent(); i++)
             {
-                string result = string.Join(x, new string[Year12.getStudent(i).getTotalLate() + 1]);
 
-                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result+"#");
+                double late = Year12.getStudent(i).getTotalLate();
+                double totalAttendance = Year12.getStudent(i).getAttendanceCount();
+                double percentage = (late / totalAttendance) * 100;
+
+                string result = string.Join(x, new string[Convert.ToInt32(percentage) + 1]);
+
+                Console.WriteLine(Year12.getStudent(i).getStudentName() + "\t" + result);
             }
         }
 
